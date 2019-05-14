@@ -1,0 +1,13 @@
+<StackLayout>
+    <ActionBar class="action-bar">
+        <Label class="action-bar-title" text="Home"></Label>
+    </ActionBar>
+
+    <ListView [items]="starts" (itemTap)="onItemTap($event)">
+        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <StackLayout [class.odd]="odd" [class.even]="even" [ngClass]="'start-item'">
+                <Label [text]='item.location +" "+ item.className'></Label>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+</StackLayout>

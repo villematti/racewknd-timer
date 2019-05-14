@@ -1,0 +1,38 @@
+<StackLayout>
+    <ActionBar class="action-bar">
+        <Label class="action-bar-title" text="Edit start"></Label>
+        <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="onBack()"></NavigationButton>
+    </ActionBar>
+
+    <ScrollView sdkExampleTitle sdkToggleNavButton>
+        <GridLayout columns="*, *" rows="150, 150, 150, 150">
+            <StackLayout row="0" col="0" class="input-field">
+                <Label class="h3" text="Yellow flag"></Label>
+            </StackLayout>
+            <StackLayout row="0"  col="1" class="input-field">
+                <Switch #yellowFlagSwitch class="m-15" checked="false" (tap)="toggleFlag('yellowFlag')"></Switch>
+            </StackLayout>
+            <StackLayout row="1" col="0" class="input-field">
+                <Label class="h3" text="Black flag"></Label>
+            </StackLayout>
+            <StackLayout row="1"  col="1" class="input-field">
+                <Switch #blackFlagSwitch class="m-15" checked="false" (tap)="toggleFlag('blackFlag')"></Switch>
+            </StackLayout>
+            <StackLayout row="2" col="0" class="input-field">
+                <Label class="h3" text="Red flag"></Label>
+            </StackLayout>
+            <StackLayout row="2"  col="1" class="input-field">
+                <Switch #redFlagSwitch class="m-15" checked="false" (tap)="toggleFlag('redFlag')"></Switch>
+            </StackLayout>
+            <StackLayout row="3" col="1">
+                <Button
+                    [disabled]="true"
+                    class="btn btn-primary btn-active" 
+                    id="button"
+                    text="Start Race"
+                    (tap)="onTapStart($event)"
+                ></Button>
+            </StackLayout>
+        </GridLayout>
+    </ScrollView>
+</StackLayout>

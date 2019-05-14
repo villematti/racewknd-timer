@@ -1,0 +1,13 @@
+<StackLayout>
+    <ActionBar class="action-bar">
+        <Label class="action-bar-title" text="Home"></Label>
+    </ActionBar>
+
+    <RadListView height="100%" [items]="races" (itemTap)="onItemTap($event)">
+        <ng-template tkListItemTemplate let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <StackLayout [class.odd]="odd" [class.even]="even" [ngClass]="'list-view-item'">
+                    <Label [text]='item.location +" "+ item.raceDate'></Label>
+            </StackLayout>
+        </ng-template>
+    </RadListView>
+</StackLayout>

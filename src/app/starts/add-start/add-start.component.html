@@ -1,0 +1,35 @@
+<StackLayout>
+    <ActionBar class="action-bar">
+        <Label class="action-bar-title" text="Starts"></Label>
+        <NavigationButton ios.systemIcon="4" android.systemIcon="ic_menu_back" text="Back" (tap)="onBack()"></NavigationButton>
+    </ActionBar>
+
+    <ScrollView sdkExampleTitle sdkToggleNavButton>
+        <GridLayout class="m-15" rows="auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto">
+            <StackLayout height="150" row="0" class="input-field">
+                <Label class="h3" text="Start name"></Label>
+                <TextField 
+                    hint="Name of start" 
+                    autocorrect="false" 
+                    class="input input-border"
+                    (textChange)="onNameChange($event)"
+                ></TextField>
+            </StackLayout>
+            <StackLayout height="150" row="1" class="input-field">
+                <Label class="h3" text="Select class"></Label>
+                <ListPicker [items]="classList" selectedIndex="0" (selectedIndexChange)="classChange($event)" class="p-15"></ListPicker>
+            </StackLayout>
+            <StackLayout height="150" row="2" class="input-field">
+                <Label class="h3" text="Number of laps"></Label>
+                <ListPicker [items]="laps" selectedIndex="1" (selectedIndexChange)="lapChange($event)" class="p-15"></ListPicker>
+            </StackLayout>
+            <StackLayout height="150" row="3" class="input-field">
+                    <Button 
+                        text="Create start"
+                        (tap)="onSubmit()"
+                        class="btn btn-primary btn-active"
+                    ></Button>
+            </StackLayout>
+        </GridLayout>
+    </ScrollView>
+</StackLayout>

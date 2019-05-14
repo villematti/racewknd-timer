@@ -1,0 +1,15 @@
+<StackLayout>
+    <ActionBar class="action-bar">
+        <Label class="action-bar-title" text="Starts"></Label>
+        <ActionItem (tap)="onAdd()" ios.systemIcon="4" android.systemIcon="ic_menu_add" ios.position="right"></ActionItem>
+        <NavigationButton ios.systemIcon="4" android.systemIcon="ic_menu_back" text="Back" (tap)="onBack()"></NavigationButton>
+    </ActionBar>
+
+    <RadListView height="100%" [items]="starts" (itemTap)="onItemTap($event)">
+        <ng-template tkListItemTemplate let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <StackLayout [class.odd]="odd" [class.even]="even" [ngClass]="'list-view-item'">
+                <Label [text]='item.location +" "+ item.className + " " + item.startName'></Label>
+            </StackLayout>
+        </ng-template>
+    </RadListView>
+</StackLayout>

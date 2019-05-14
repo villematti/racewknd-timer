@@ -1,0 +1,24 @@
+<StackLayout>
+        <ActionBar class="action-bar">
+            <Label class="action-bar-title" text="Create competitor"></Label>
+            <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="onBack()"></NavigationButton>
+        </ActionBar>
+    
+        <ScrollView sdkExampleTitle sdkToggleNavButton>
+            <GridLayout columns="*" rows="150, 150, 150, 150">
+                    <StackLayout height="150" row="1" class="input-field">
+                        <Label class="h3" text="Select class"></Label>
+                        <ListPicker [items]="drivers" selectedIndex="0" (selectedIndexChange)="onDriverChange($event)" class="p-15"></ListPicker>
+                    </StackLayout>
+                <StackLayout row="4" col="1">
+                    <Button
+                        [disabled]="true"
+                        class="btn btn-primary btn-active" 
+                        id="button"
+                        text="Create competitor"
+                        (tap)="onCreateCompetitor($event)"
+                    ></Button>
+                </StackLayout>
+            </GridLayout>
+        </ScrollView>
+    </StackLayout>

@@ -1,0 +1,32 @@
+.odd {
+    background-color: black;
+    color: white;
+    height: 100px;
+    border-width: 2x;
+    border-color: lightgrey;
+    margin: 15px;
+}
+
+.even {
+    background-color: white;
+    color: black;
+    height: 100px;
+    border-width: 2px;
+    border-color: darkgrey;
+    margin: 15px;
+}
+
+.list-view-item {
+    padding: 20px;
+}
+
+.h3 {
+    text-align: center;
+    font-size: 24;
+}
+
+.boat-number {
+    font-size: 50;
+    text-align: center;
+    font-weight: bold;
+}
