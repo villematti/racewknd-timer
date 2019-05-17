@@ -29,8 +29,6 @@ export class StartsComponent implements AfterViewInit {
         this.activatedRoute.queryParams.subscribe(val => {
             this.race = JSON.parse(val.race);
             this.class = val.class;
-            console.log("How does this goes: ", this.race);
-            console.log("How does classes work: ", this.class);
 
         }).unsubscribe();
 

@@ -2,11 +2,8 @@ import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
 import { Start } from "~/app/types/Start";
 import { Location } from "@angular/common";
-import { TextField } from "tns-core-modules/ui/text-field/text-field";
 import { ApiService } from "~/app/services/api.service";
 import { Constants } from "~/app/constants/urls";
-import { race } from "rxjs";
-import { request, HttpRequestOptions } from "tns-core-modules/http/http";
 
 @Component({
     selector: "Edit-start",
