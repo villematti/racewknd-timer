@@ -1,11 +1,11 @@
 {
   "nativescript": {
-    "id": "org.nativescript.racewkndtimer",
+    "id": "fi.racewknd.timer",
     "tns-ios": {
       "version": "5.1.1"
     },
     "tns-android": {
-      "version": "5.1.0"
+      "version": "5.2.1"
     }
   },
   "description": "RaceWKDN Timer app",
@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~7.1.0",
     "@angular/router": "~7.1.0",
     "nativescript-angular": "~7.1.0",
+    "nativescript-socketio": "^3.2.1",
     "nativescript-theme-core": "~1.0.4",
     "nativescript-ui-listview": "^6.3.0",
     "nativescript-unit-test-runner": "^0.5.1",

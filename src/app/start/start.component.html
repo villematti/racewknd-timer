@@ -2,13 +2,14 @@
     <ActionBar class="action-bar">
         <Label class="action-bar-title" text="Start"></Label>
         <ActionItem (tap)="onEdit()" ios.systemIcon="2" android.systemIcon="ic_menu_edit" ios.position="right"></ActionItem>
+        <ActionItem (tap)="onCompetitorInfo()" ios.systemIcon="10" android.systemIcon="ic_menu_info_details" ios.position="right"></ActionItem>
         <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="onBack()"></NavigationButton>
     </ActionBar>
-
-    <RadListView height="100%" [items]="competitors" (itemTap)="onItemTap($event)">
+    <RadListView itemReorder="true" (itemReordered)="onItemReordered($event)" height="100%" [items]="competitors" (itemTap)="onItemTap($event)">
         <ng-template tkListItemTemplate let-item="item" let-i="index" let-odd="odd" let-even="even">
-            <GridLayout cols="*" rows="250" [class.odd]="odd" [class.even]="even" [ngClass]="'list-view-item'">
-                <label col="0" row="0" class="boat-number" [text]='item.number'></label>
+            <GridLayout columns="*" rows="*, *" [class.odd]="odd" [class.even]="even" [ngClass]="'list-view-item'">
+                <label col="0" row="0" class="boat-number-center" [text]='item.number'></label>
+                <label col="0" row="1" class="laptime-center" text="{{ item.lastLapTime | laptime }}"></label>
             </GridLayout>
         </ng-template>
         <ListViewGridLayout tkListViewLayout scrollDirection="Vertical" spanCount="2"></ListViewGridLayout>

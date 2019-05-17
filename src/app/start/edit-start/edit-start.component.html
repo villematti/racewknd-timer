@@ -5,7 +5,8 @@
     </ActionBar>
 
     <ScrollView sdkExampleTitle sdkToggleNavButton>
-        <GridLayout columns="*, *" rows="150, 150, 150, 150">
+        <StackLayout>
+        <GridLayout columns="*, *" rows="150, 150, 150">
             <StackLayout row="0" col="0" class="input-field">
                 <Label class="h3" text="Yellow flag"></Label>
             </StackLayout>
@@ -24,15 +25,16 @@
             <StackLayout row="2"  col="1" class="input-field">
                 <Switch #redFlagSwitch class="m-15" checked="false" (tap)="toggleFlag('redFlag')"></Switch>
             </StackLayout>
-            <StackLayout row="3" col="1">
-                <Button
-                    [disabled]="true"
-                    class="btn btn-primary btn-active" 
-                    id="button"
-                    text="Start Race"
-                    (tap)="onTapStart($event)"
-                ></Button>
-            </StackLayout>
         </GridLayout>
+        <StackLayout>
+            <Button
+                [disabled]="true"
+                class="btn btn-primary btn-active" 
+                id="button"
+                text="Start Race"
+                (tap)="onTapStart($event)"
+            ></Button>
+        </StackLayout>
+        </StackLayout>
     </ScrollView>
 </StackLayout>

@@ -9,6 +9,7 @@ import { AddStartComponent } from "./starts/add-start/add-start.component";
 import { EditStartComponent } from "./start/edit-start/edit-start.component";
 import { CreateCompetitorComponent } from "./competitors/create-competitor.component";
 import { ClassesComponent } from "./classes/classes.component";
+import { StartCompetitorsComponent } from "./start/start-competitors.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/races", pathMatch: "full" },
@@ -20,6 +21,7 @@ const routes: Routes = [
     { path: "edit-start", component: EditStartComponent },
     { path: "create-competitor", component: CreateCompetitorComponent},
     { path: "classes", component: ClassesComponent },
+    { path: "check-competitors", component: StartCompetitorsComponent }
 ];
 
 @NgModule({

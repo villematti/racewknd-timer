@@ -1,23 +1,22 @@
 .odd {
     background-color: black;
     color: white;
-    height: 100px;
+    height: 150;
     border-width: 2x;
-    border-color: lightgrey;
-    margin: 15px;
+    margin: 10px;
 }
 
 .even {
     background-color: white;
     color: black;
-    height: 100px;
+    height: 150;
     border-width: 2px;
-    border-color: darkgrey;
-    margin: 15px;
+    margin: 10px;
 }
 
 .list-view-item {
-    padding: 20px;
+    padding: 10px;
+    font-size: 28;
 }
 
 .h3 {
@@ -25,8 +24,28 @@
     font-size: 24;
 }
 
-.boat-number {
-    font-size: 50;
+.boat-number, .boat-number-center {
+    font-size: 30;
+    font-weight: bold;
+}
+
+.boat-number-center {
+    text-align: center;
+}
+
+.laptime, .laptime-center {
+    font-size: 25;
+}
+
+.laptime-center {
+    text-align: center;
+}
+
+.boat-number-info {
+    font-size: 30;
     text-align: center;
     font-weight: bold;
+    border-width: 2px;
+    border-color: white;
+    margin: 15px;
 }

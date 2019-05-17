@@ -12,6 +12,9 @@ import { AddStartComponent } from "./starts/add-start/add-start.component";
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 import { EditStartComponent } from "./start/edit-start/edit-start.component";
 import { ClassesComponent } from "./classes/classes.component";
+import { StartCompetitorsComponent } from "./start/start-competitors.component";
+import { SocketIOModule } from "nativescript-socketio/angular";
+import { LaptimePipe } from "./pipes/laptime-pipe";
 
 @NgModule({
     bootstrap: [
@@ -20,7 +23,8 @@ import { ClassesComponent } from "./classes/classes.component";
     imports: [
         NativeScriptModule,
         AppRoutingModule,
-        NativeScriptUIListViewModule
+        NativeScriptUIListViewModule,
+        SocketIOModule.forRoot("https://racewkndapp.com"),
     ],
     declarations: [
         AppComponent,
@@ -31,6 +35,8 @@ import { ClassesComponent } from "./classes/classes.component";
         AddStartComponent,
         EditStartComponent,
         ClassesComponent,
+        StartCompetitorsComponent,
+        LaptimePipe
     ],
     providers: [
         ApiService

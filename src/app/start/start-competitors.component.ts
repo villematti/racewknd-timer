@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, NgZone } from "@angular/core";
 import { request, getFile, getImage, getJSON, getString, HttpResponse, HttpRequestOptions } from "tns-core-modules/http";
 import { NavigationOptions } from "nativescript-angular/router/ns-location-strategy";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -7,14 +7,17 @@ import { ApiService } from "../services/api.service";
 import { Constants } from "../constants/urls";
 import { RadListViewComponent } from "nativescript-ui-listview/angular/listview-directives";
 import { Start } from "../types/Start";
+import { SocketIO } from "nativescript-socketio/socketio";
+import { Observable } from "rxjs";
+import { ObservableArray } from "tns-core-modules/data/observable-array/observable-array";
 
 @Component({
-    selector: "Start",
+    selector: "StartCompetitors",
     moduleId: module.id,
-    templateUrl: "./start.component.html",
+    templateUrl: "./start-competitors.component.html",
     styleUrls: ["./../app.component.css"]
 })
-export class StartComponent implements OnInit {
+export class StartCompetitorsComponent implements OnInit {
 
     start: Start | undefined;
 
@@ -24,7 +27,9 @@ export class StartComponent implements OnInit {
         private readonly activatedRoute: ActivatedRoute,
         private readonly location: Location,
         private readonly api: ApiService,
-        private readonly router: Router
+        private readonly router: Router,
+        private socket: SocketIO,
+        private ngZone: NgZone,
     ) {
         // Use the component constructor to inject providers.
     }
@@ -32,22 +37,38 @@ export class StartComponent implements OnInit {
     ngOnInit(): void {
         this.activatedRoute.queryParams.subscribe((val: Start) => {
             this.start = val;
+            this.initialCompetitors();
             this.getCompetitors();
         }).unsubscribe();
     }
 
-    getCompetitors() {
-        if (!this.start || this.start.competitors.length === 0) {
-            return;
-        }
+    initialCompetitors() {
+        const formData = new FormData()
+        formData.append("startId", this.start.id);
 
-        const formData = new FormData();
-        formData.append("ids", this.start.competitors.join(","));
-        this.api.get$(Constants.GET_COMPETITORS, "POST", formData).subscribe(response => {
-            const resp = response.content.toJSON();
-            resp.sort((a,b) => (a.number > b.number) ? 1 : ((b.number > a.number) ? -1 : 0));
-            this.competitors = resp;
-        });
+        this.api.get$(Constants.GET_STANDINGS, "POST", formData).subscribe(result => {
+            this.competitors = JSON.parse(result.content);
+        })
+    }
+
+    getCompetitors() {
+        this.theSocket().subscribe((res: any) => {
+            this.ngZone.run(() => {
+                this.competitors = res;
+            })
+        })
+    }
+
+    private theSocket() {
+        return new Observable(observe => {
+            this.socket.on(`standings_${this.start.id}`, (res: any) => {
+                observe.next(res);
+            });
+    
+            setTimeout(() => {
+                this.socket.emit('subscribeToLaptimes', this.start.id);
+            }, 1000)
+        })
     }
 
     onBack() {
@@ -55,19 +76,7 @@ export class StartComponent implements OnInit {
     }
 
     onItemTap(event: any) {
-        const competitor = this.competitors[event.index];
-
-        const formData = new FormData()
-        formData.append("competitorId", competitor.id);
-        formData.append("startId", this.start.id);
-
-
-        this.api.get$(Constants.ADD_LAPTIME, "POST", formData).subscribe((result) => {
-            const res = JSON.parse(result.content);
-            if (res.code === 200) {
-                this.competitors[event.index] = res.competitor;
-            }
-        })
+        
     }
 
     onEdit() {
@@ -81,10 +90,7 @@ export class StartComponent implements OnInit {
         console.log(e);
     }
 
-    onCompetitorInfo() {
-        const params = {
-            queryParams: this.start
-        }
-        this.router.navigate(["check-competitors"], params);
+    tapOnButton() {
+        console.log("Button tapped");
     }
 }
